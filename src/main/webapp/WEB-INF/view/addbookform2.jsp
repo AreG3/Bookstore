@@ -1,55 +1,89 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: luke
-  Date: 15.05.2019
-  Time: 00:05
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>books</title>
+    <title>Books</title>
+    <style>
+        /* Style dla formularza */
+        form {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        .label {
+            text-align: right;
+        }
+
+        .input {
+            padding: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .save {
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .link {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-ADD BOOK
-<form:form action="saveBook" modelAttribute="bookDTO" method="POST">
+    <h2>ADD BOOK</h2>
 
-    <table>
-        <tbody>
-        <tr>
-            <td><label>nazwa:</label></td>
-            <td><form:input path="nazwa" /></td>
-        </tr>
+    <form:form action="saveBook" modelAttribute="bookDTO" method="POST">
+        <table>
+            <tbody>
+                <tr>
+                    <td class="label"><label>Nazwa:</label></td>
+                    <td><form:input path="nazwa" class="input" /></td>
+                </tr>
 
-        <tr>
-            <td><label>wydawnictwo:</label></td>
-            <td><form:input path="wydawnictwo" /></td>
-        </tr>
+                <tr>
+                    <td class="label"><label>Wydawnictwo:</label></td>
+                    <td><form:input path="wydawnictwo" class="input" /></td>
+                </tr>
 
-        <tr>
-            <td><label>cena:</label></td>
-            <td><form:input path="cena" /></td>
-        </tr>
-        <tr>
-            <td><label for="categories">kategoria:</label></td>
-            <td><form:select path="kategoriaid" id="categories"> <form:options items="${categories}" itemValue="id" itemLabel="nazwa"/></form:select></td>
-        </tr>
+                <tr>
+                    <td class="label"><label>Cena:</label></td>
+                    <td><form:input path="cena" class="input" /></td>
+                </tr>
 
-        <tr>
-            <td><label></label></td>
-            <td><input type="submit" value="Save" class="save" /></td>
-        </tr>
+                <tr>
+                    <td class="label"><label for="categories">Kategoria:</label></td>
+                    <td>
+                        <form:select path="kategoriaid" id="categories">
+                            <form:options items="${categories}" itemValue="id" itemLabel="nazwa" />
+                        </form:select>
+                    </td>
+                </tr>
 
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Save" class="save" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </form:form>
 
-        </tbody>
-    </table>
-
-
-</form:form>
-
-
-<p>
-    <a href="${pageContext.request.contextPath}/books/list "> return  </a>
-</p>
+    <p>
+        <a class="link" href="${pageContext.request.contextPath}/books/list">Return</a>
+    </p>
 </body>
 </html>

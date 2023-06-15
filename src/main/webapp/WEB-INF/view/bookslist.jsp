@@ -2,6 +2,47 @@
 <html>
 <head>
     <title>List books</title>
+    <style>
+        /* Style dla tabeli */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Style dla przycisków */
+        .button {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        /* Style dla linków */
+        .link {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
     <h2>Books:</h2>
@@ -22,8 +63,8 @@
                     <td>${book.cena}</td>
                     <td>${book.kategoria.nazwa}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/books/updateBookForm?bookId=${book.id}">edit</a>
-                        <a href="${pageContext.request.contextPath}/books/deleteBook?bookId=${book.id}">delete</a>
+                        <a class="link" href="${pageContext.request.contextPath}/books/updateBookForm?bookId=${book.id}">edit</a>
+                        <a class="link" href="${pageContext.request.contextPath}/books/deleteBook?bookId=${book.id}">delete</a>
                     </td>
                 </tr>
             </c:forEach>
@@ -31,12 +72,12 @@
     </div>
 
     <div>
-        <input type="button" value="Add Book" onclick="window.location.href='formadd2'; return false;" />
+        <button class="button" onclick="window.location.href='formadd2'; return false;">Add Book</button>
     </div>
 
     <div>
         <p>
-            <a href="${pageContext.request.contextPath}/logout">Logout</a>
+            <a class="link" href="${pageContext.request.contextPath}/logout">Logout</a>
         </p>
     </div>
 

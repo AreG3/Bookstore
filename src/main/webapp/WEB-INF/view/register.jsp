@@ -4,36 +4,91 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
- <meta charset="utf-8">
- <title>Rejestracja</title>
+    <meta charset="utf-8">
+    <title>Register</title>
+    <style>
+        /* Style dla formularza */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: inline-block;
+            width: 80px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 5px;
+            width: 200px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            padding: 8px 12px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        nav {
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
 <nav>
- <div >
- <a href="${pageContext.request.contextPath}">Strona główna</a>
- </div>
+    <div>
+        <a href="${pageContext.request.contextPath}">Home</a>
+    </div>
 </nav>
-<h3>Rejestracja</h3>
-<c:if test="${not empty validator}"><p><c:out value="${validator}"/></p></c:if>
+<h3>Register</h3>
+<c:if test="${not empty validator}">
+    <p class="error"><c:out value="${validator}"/></p>
+</c:if>
 <form:form method="post" modelAttribute="user">
- <table>
- <tbody>
- <tr>
- <td><label for="username">Nazwa:</label></td>
- <td><form:input path="username" id="username" class="form-control"/>
- </td>
- </tr>
- <tr>
- <td><label for="password">Hasło:</label></td>
- <td><form:password path="password" id="password" class="formcontrol"/></td>
- </tr>
- <tr>
- <td>
- <button type="submit">Zarejestruj</button>
- </td>
- </tr>
- </tbody>
- </table>
+    <table>
+        <tbody>
+        <tr class="form-group">
+            <td><label for="username">Nickname:</label></td>
+            <td><form:input path="username" id="username" /></td>
+        </tr>
+        <tr class="form-group">
+            <td><label for="password">Password:</label></td>
+            <td><form:password path="password" id="password" /></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit">Register</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </form:form>
 </body>
 </html>
