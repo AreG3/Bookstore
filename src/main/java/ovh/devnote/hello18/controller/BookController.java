@@ -82,7 +82,13 @@ public class BookController {
         return "addbookform";
     }*/
 
-    @GetMapping("updateBookForm")
+    @GetMapping("/deleteBook")
+    public String deleteBook(@RequestParam("bookId") int bookId) {
+        bookService.deleteBook(bookId);
+        return "redirect:/books/list";
+    }
+
+    @GetMapping("/updateBookForm")
     public String updateBookForm(@RequestParam("bookId") int bookId, Model model) {
         Ksiazka ksiazka = bookService.getBook(bookId);
         List<Kategoria> categories = categoryService.getCategories();
@@ -93,22 +99,12 @@ public class BookController {
         bookDTO.setCena(ksiazka.getCena());
         bookDTO.setKategoriaid(ksiazka.getKategoria().getId());
 
-        model.addAttribute("bookDTO", bookDTO); // Zmieniono nazwę atrybutu na "bookDTO"
+        model.addAttribute("bookDTO", bookDTO);
         model.addAttribute("categories", categories);
         model.addAttribute("currentCategoryId", ksiazka.getKategoria().getId());
+
         return "addbookform";
     }
 
-
-
-
-    /*@GetMapping("/updateBookForm")
-    public String updateBookForm(@RequestParam("bookId") int bookId, Model model) {
-        Ksiazka ksiazka = bookService.getBook(bookId);
-        List<Kategoria> categories = categoryService.getCategories(); // Pobierz wszystkie kategorie
-        model.addAttribute("ksiazka", ksiazka);
-        model.addAttribute("categories", categories); // Przekaż listę kategorii do widoku
-        return "addbookform2";
-    }*/
 
 }

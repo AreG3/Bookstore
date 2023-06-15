@@ -12,5 +12,7 @@ public interface BookDAO {
     public void updateBook(Ksiazka ksiazka);
     public Ksiazka getBook(int id);
 
+    public void deleteBook(int id);
+
 
 }

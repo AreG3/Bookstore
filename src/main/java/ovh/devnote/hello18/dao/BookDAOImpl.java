@@ -44,4 +44,13 @@ public class BookDAOImpl implements BookDAO {
         Session session = sessionFactory.getCurrentSession();
         session.update(ksiazka);
     }
+
+    @Override
+    public void deleteBook(int id) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Ksiazka book = currentSession.get(Ksiazka.class, id);
+        if (book != null) {
+            currentSession.delete(book);
+        }
+    }
 }

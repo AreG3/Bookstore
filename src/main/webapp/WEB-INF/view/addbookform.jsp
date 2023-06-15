@@ -8,7 +8,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>books</title>
+    <title>Books</title>
 </head>
 <body>
 ADD BOOK
@@ -18,21 +18,21 @@ ADD BOOK
         <tbody>
         <form:hidden path="id"/>
         <tr>
-            <td><label>nazwa:</label></td>
+            <td><label>Title:</label></td>
             <td><form:input path="nazwa" /></td>
         </tr>
 
         <tr>
-            <td><label>wydawnictwo:</label></td>
+            <td><label>Publisher:</label></td>
             <td><form:input path="wydawnictwo" /></td>
         </tr>
 
         <tr>
-            <td><label>cena:</label></td>
+            <td><label>Prize:</label></td>
             <td><form:input path="cena" /></td>
         </tr>
         <tr>
-            <td><label for="categories">kategoria:</label></td>
+            <td><label for="categories">Category:</label></td>
             <td><form:select path="kategoriaid" id="categories"> <form:options items="${categories}" itemValue="id" itemLabel="nazwa"/></form:select></td>
         </tr>
 
