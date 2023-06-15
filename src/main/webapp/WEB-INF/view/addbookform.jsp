@@ -12,7 +12,8 @@
 </head>
 <body>
 ADD BOOK
-<form:form action="saveBook" modelAttribute="book" method="POST">
+<form:form action="saveBook" modelAttribute="bookDTO" method="POST">
+
     <table>
         <tbody>
         <form:hidden path="id"/>
@@ -32,7 +33,7 @@ ADD BOOK
         </tr>
         <tr>
             <td><label for="categories">kategoria:</label></td>
-            <td><form:select path="kategoria" id="categories"> <form:options items="${categories}" itemValue="id" itemLabel="nazwa"/></form:select></td>
+            <td><form:select path="kategoriaid" id="categories"> <form:options items="${categories}" itemValue="id" itemLabel="nazwa"/></form:select></td>
         </tr>
 
         <tr>

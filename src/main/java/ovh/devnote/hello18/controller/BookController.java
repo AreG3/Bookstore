@@ -55,8 +55,8 @@ public class BookController {
         if (ksiazka == null) {
             ksiazka = new Ksiazka();
         }
-        Kategoria kat = categoryService.getCategory(bookDTO.getKategoriaid());
-        ksiazka.setKategoria(kat);
+        Kategoria kat = categoryService.getCategory(bookDTO.getKategoriaid()); // Pobierz obiekt Kategoria na podstawie kategoriaid
+        ksiazka.setKategoria(kat); // Ustaw obiekt Kategoria na książce
         ksiazka.setNazwa(bookDTO.getNazwa());
         ksiazka.setWydawnictwo(bookDTO.getWydawnictwo());
         ksiazka.setCena(bookDTO.getCena());
@@ -82,15 +82,25 @@ public class BookController {
         return "addbookform";
     }*/
 
-
     @GetMapping("updateBookForm")
-    public String updateBookForm(@RequestParam("bookId")int bookid, Model model){
-        Ksiazka ksiazka = bookService.getBook(bookid);
+    public String updateBookForm(@RequestParam("bookId") int bookId, Model model) {
+        Ksiazka ksiazka = bookService.getBook(bookId);
         List<Kategoria> categories = categoryService.getCategories();
-        model.addAttribute("book",ksiazka);
+        BookDTO bookDTO = new BookDTO();
+        bookDTO.setId(ksiazka.getId());
+        bookDTO.setNazwa(ksiazka.getNazwa());
+        bookDTO.setWydawnictwo(ksiazka.getWydawnictwo());
+        bookDTO.setCena(ksiazka.getCena());
+        bookDTO.setKategoriaid(ksiazka.getKategoria().getId());
+
+        model.addAttribute("bookDTO", bookDTO); // Zmieniono nazwę atrybutu na "bookDTO"
         model.addAttribute("categories", categories);
+        model.addAttribute("currentCategoryId", ksiazka.getKategoria().getId());
         return "addbookform";
     }
+
+
+
 
     /*@GetMapping("/updateBookForm")
     public String updateBookForm(@RequestParam("bookId") int bookId, Model model) {
