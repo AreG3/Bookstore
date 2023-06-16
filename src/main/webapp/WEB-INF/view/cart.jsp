@@ -1,7 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
+xmlns:th="http://www.thymeleaf.org"
 <head>
-    <title>List books</title>
+    <title>Cart</title>
     <style>
         /* Style dla tabeli */
         table {
@@ -45,33 +46,30 @@
     </style>
 </head>
 <body>
-    <h2>Books:</h2>
+    <h2>Cart:</h2>
 
     <div>
         <table>
             <tr>
                 <th>Title</th>
                 <th>Publisher</th>
-                <th>Prize</th>
+                <th>Price</th>
                 <th>Category</th>
-                <sec:authorize access="hasRole('USER')">
-                    <th>Actions</th>
-                </sec:authorize>
+                <th>Authors</th>
+                <th>Actions</th>
             </tr>
             <c:forEach var="book" items="${books}">
                 <tr>
-                    <td>${book.nazwa}</td>
-                    <td>${book.wydawnictwo}</td>
-                    <td>${book.cena}</td>
-                    <td>${book.kategoria.nazwa}</td>
-                    <sec:authorize access="hasRole('USER')">
-                        <td>
-                            <form action="${pageContext.request.contextPath}/cart/add" method="post">
-                                <input type="hidden" name="bookId" value="${book.id}" />
-                                <button type="submit">Do koszyka</button>
-                            </form>
-                        </td>
-                    </sec:authorize>
+                    <td><c:out value="${book.nazwa}" /></td>
+                    <td><c:out value="${book.wydawnictwo}" /></td>
+                    <td><c:out value="${book.cena}" /></td>
+                    <td><c:out value="${book.kategoria.nazwa}" /></td>
+                    <td>
+                        <form action="/cart/delete/${bookId}" method="post">
+                          <input type="hidden" name="_method" value="DELETE">
+                          <button type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

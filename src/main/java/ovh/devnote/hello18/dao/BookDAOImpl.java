@@ -53,4 +53,14 @@ public class BookDAOImpl implements BookDAO {
             currentSession.delete(book);
         }
     }
+
+    @Override
+    public List<Ksiazka> getBooksInCart(List<Integer> bookIds) {
+        Session session = sessionFactory.getCurrentSession();
+        CriteriaBuilder cb = session.getCriteriaBuilder();
+        CriteriaQuery<Ksiazka> cq = cb.createQuery(Ksiazka.class);
+        Root<Ksiazka> root = cq.from(Ksiazka.class);
+        cq.select(root).where(root.get("id").in(bookIds));
+        return session.createQuery(cq).getResultList();
+    }
 }

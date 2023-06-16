@@ -56,4 +56,10 @@ public class BookServiceImpl implements BookService {
         bookDAO.deleteBook(id);
     }
 
+    @Override
+    @Transactional
+    public List<Ksiazka> getBooksInCart(List<Integer> bookIds) {
+        return bookDAO.getBooksInCart(bookIds);
+    }
+
 }
