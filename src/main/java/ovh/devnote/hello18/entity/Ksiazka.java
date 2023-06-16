@@ -33,7 +33,7 @@ public class Ksiazka {
     private Kategoria kategoria;
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="autorzy_to_ksiazki",
             joinColumns = @JoinColumn(name="ksiazka_id"),
