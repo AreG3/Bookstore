@@ -21,7 +21,7 @@ public class Cart {
         bookIds.remove(id);
     }
 
-    public List<Integer> getBookIds() {
-        return new ArrayList<>(bookIds);
+    public Set<Integer> getBookIds() {
+        return bookIds;
     }
 }

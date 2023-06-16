@@ -8,6 +8,7 @@ import ovh.devnote.hello18.dao.BookDAO;
 import ovh.devnote.hello18.entity.Ksiazka;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -58,7 +59,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @Transactional
-    public List<Ksiazka> getBooksInCart(List<Integer> bookIds) {
+    public Set<Ksiazka> getBooksInCart(Set<Integer> bookIds) {
         return bookDAO.getBooksInCart(bookIds);
     }
 

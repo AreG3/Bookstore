@@ -3,11 +3,12 @@ package ovh.devnote.hello18.services;
 import ovh.devnote.hello18.entity.Ksiazka;
 
 import java.util.List;
+import java.util.Set;
 
 public interface BookService {
     List<Ksiazka> getBooks();
 
-    List<Ksiazka> getBooksInCart(List<Integer> id);
+    Set<Ksiazka> getBooksInCart(Set<Integer> id);
 
     Ksiazka getBook(int id);
 

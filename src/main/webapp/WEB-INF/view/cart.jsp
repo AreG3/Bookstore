@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-xmlns:th="http://www.thymeleaf.org"
 <head>
     <title>Cart</title>
     <style>
@@ -64,12 +63,12 @@ xmlns:th="http://www.thymeleaf.org"
                     <td><c:out value="${book.wydawnictwo}" /></td>
                     <td><c:out value="${book.cena}" /></td>
                     <td><c:out value="${book.kategoria.nazwa}" /></td>
-                    <td>
-                        <form action="/cart/delete/${bookId}" method="post">
-                          <input type="hidden" name="_method" value="DELETE">
-                          <button type="submit">Delete</button>
-                        </form>
-                    </td>
+                    <td style="padding-left: 25px">
+                                                    <form action="${pageContext.request.contextPath}/cart/delete" method="post">
+                                                        <input type="hidden" name="bookId" value="${book.id}"/>
+                                                        <button type="submit" class="btn btn-secondary">Usun</button>
+                                                    </form>
+                                                </td>
                 </tr>
             </c:forEach>
         </table>

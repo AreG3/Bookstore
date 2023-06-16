@@ -65,6 +65,10 @@
                     <td>${book.cena}</td>
                     <td>${book.kategoria.nazwa}</td>
                     <sec:authorize access="hasRole('USER')">
+                    <td>
+                    <a class="link" href="${pageContext.request.contextPath}/books/updateBookForm?bookId=${book.id}">edit</a>
+                    <a class="link" href="${pageContext.request.contextPath}/books/deleteBook?bookId=${book.id}">delete</a>
+                    </td>
                         <td>
                             <form action="${pageContext.request.contextPath}/cart/add" method="post">
                                 <input type="hidden" name="bookId" value="${book.id}" />

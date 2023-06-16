@@ -3,6 +3,7 @@ package ovh.devnote.hello18.dao;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ovh.devnote.hello18.entity.Ksiazka;
@@ -10,7 +11,10 @@ import ovh.devnote.hello18.entity.Ksiazka;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Repository
 public class BookDAOImpl implements BookDAO {
@@ -53,7 +57,7 @@ public class BookDAOImpl implements BookDAO {
             currentSession.delete(book);
         }
     }
-
+/*
     @Override
     public List<Ksiazka> getBooksInCart(List<Integer> bookIds) {
         Session session = sessionFactory.getCurrentSession();
@@ -62,5 +66,20 @@ public class BookDAOImpl implements BookDAO {
         Root<Ksiazka> root = cq.from(Ksiazka.class);
         cq.select(root).where(root.get("id").in(bookIds));
         return session.createQuery(cq).getResultList();
+    }
+ */
+
+
+    @Override
+    public Set<Ksiazka> getBooksInCart(Set<Integer> bookIds) {
+        Session session = sessionFactory.getCurrentSession();
+        if (bookIds.isEmpty()
+        ) {
+            return new HashSet<>();
+        }
+        Query<Ksiazka> query = session.createQuery(" from Ksiazka as k where k.id in (:booksId)", Ksiazka.class).setParameterList("booksId", bookIds);
+        Set<Ksiazka> books = query.getResultStream().collect(Collectors.toSet());
+
+        return books;
     }
 }

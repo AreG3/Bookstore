@@ -10,17 +10,16 @@ import ovh.devnote.hello18.services.BookService;
 
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/cart")
 public class CartController {
 
-    @Autowired
     private Cart cart;
-
-    @Autowired
     private BookService bookService;
 
+    @Autowired
     public CartController(Cart cart, BookService bookService) {
         this.cart = cart;
         this.bookService = bookService;
@@ -28,7 +27,7 @@ public class CartController {
 
     @GetMapping
     public String cart(Model model) {
-        List<Ksiazka> cartBooks = bookService.getBooksInCart(cart.getBookIds());
+        Set<Ksiazka> cartBooks = bookService.getBooksInCart(cart.getBookIds());
         model.addAttribute("books", cartBooks);
         return "cart";
     }
@@ -39,11 +38,18 @@ public class CartController {
         return "redirect:/cart";
     }
 
-    @PostMapping("/cart/delete/{bookId}")
+    /*
+    @RequestMapping(value = "/delete/{bookId}", method = RequestMethod.POST)
     public String removeFromCart(@PathVariable int bookId) {
         cart.deleteBookId(bookId);
         return "redirect:/cart";
     }
+    */
 
+    @PostMapping("/delete")
+    public String removeFromCart(@RequestParam("bookId") int id) {
+        cart.deleteBookId(id);
+        return "redirect:/cart";
+    }
 
 }
