@@ -18,14 +18,14 @@ import java.util.List;
 public class AuthorController {
     @Autowired
     private AuthorService authorService;
-    //@RequestMapping("/list")
+
     @GetMapping("/list")
-    public String listCustomers(Model model)
-    {
-        List<Autor> autorzy = authorService.getAuthor();
-        model.addAttribute("autorzy",autorzy);
+    public String listCustomers(Model model) {
+        List<Autor> autorzy = authorService.getAuthors();
+        model.addAttribute("autorzy", autorzy);
         return "authorlist";
     }
+
 
     @GetMapping("/authorformadd")
     public String addForm(Model model)

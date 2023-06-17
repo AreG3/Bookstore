@@ -76,6 +76,15 @@
                 </tr>
 
                 <tr>
+                        <td class="label"><label for="authors">Autorzy:</label></td>
+                        <td>
+                            <form:select path="autorzy" id="authors" multiple="true">
+                                <form:options items="${authors}" itemValue="id" itemLabel="name" />
+                            </form:select>
+                        </td>
+                    </tr>
+
+                <tr>
                     <td></td>
                     <td><input type="submit" value="Save" class="save" /></td>
                 </tr>

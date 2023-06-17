@@ -9,22 +9,32 @@ import ovh.devnote.hello18.entity.Autor;
 import java.util.List;
 
 @Service
-public class AuthorServiceImpl implements AuthorService{
+public class AuthorServiceImpl implements AuthorService {
     @Autowired
     private AuthorDAO authorDAO;
 
     @Override
     @Transactional
-    public List<Autor> getAuthor() {
-        List<Autor> authors = authorDAO.getAuthors();
-        return authors;
+    public List<Autor> getAuthors() {
+        return authorDAO.getAuthors();
     }
 
     @Override
     @Transactional
     public void saveAuthor(Autor autor) {
         authorDAO.saveAuthor(autor);
-
     }
 
+    @Override
+    @Transactional
+    public Autor getAuthor(int autorId) {
+        return authorDAO.getAuthor(autorId);
+    }
+
+    @Override
+    @Transactional
+    public List<Autor> getAuthor() {
+        throw new UnsupportedOperationException("Method not implemented");
+    }
 }
+

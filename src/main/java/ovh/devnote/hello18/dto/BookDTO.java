@@ -1,14 +1,14 @@
 package ovh.devnote.hello18.dto;
 
+import java.util.List;
+
 public class BookDTO {
-    private String nazwa;
-
     private int id;
+    private String nazwa;
     private String wydawnictwo;
-
     private float cena;
-
     private int kategoriaid;
+    private List<Integer> autorzy;
 
     public int getId() {
         return id;
@@ -16,9 +16,6 @@ public class BookDTO {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public BookDTO() {
     }
 
     public String getNazwa() {
@@ -51,5 +48,13 @@ public class BookDTO {
 
     public void setKategoriaid(int kategoriaid) {
         this.kategoriaid = kategoriaid;
+    }
+
+    public List<Integer> getAutorzy() {
+        return autorzy;
+    }
+
+    public void setAutorzy(List<Integer> autorzy) {
+        this.autorzy = autorzy;
     }
 }

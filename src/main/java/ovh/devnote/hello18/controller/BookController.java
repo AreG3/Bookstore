@@ -5,16 +5,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ovh.devnote.hello18.dto.BookDTO;
+import ovh.devnote.hello18.entity.Autor;
 import ovh.devnote.hello18.entity.Kategoria;
 import ovh.devnote.hello18.entity.Ksiazka;
 import ovh.devnote.hello18.services.BookService;
 import ovh.devnote.hello18.services.CategoryService;
 import ovh.devnote.hello18.services.CategoryServiceImpl;
 import ovh.devnote.hello18.dao.BookDAO;
+import ovh.devnote.hello18.services.AuthorService;
 
 
 import javax.transaction.Transactional;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/books")
@@ -28,6 +32,9 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private AuthorService authorService;
+
     @GetMapping("/list")
     public String listCustomers(Model model)
     {
@@ -37,15 +44,18 @@ public class BookController {
     }
 
     @GetMapping("/bookformadd")
-    public String addForm(Model model)
-    {
+    public String addForm(Model model) {
         Ksiazka book = new Ksiazka();
         List<Kategoria> categories = categoryService.getCategories();
+        List<Autor> authors = authorService.getAuthors(); // Dodane: Pobierz listę autorów
 
-        model.addAttribute("book",book);
-        model.addAttribute("categories",categories);
+        model.addAttribute("book", book);
+        model.addAttribute("categories", categories);
+        model.addAttribute("authors", authors); // Dodane: Dodaj listę autorów do modelu
+
         return "addbookform";
     }
+
 
 
     @PostMapping("/saveBook")
@@ -60,9 +70,23 @@ public class BookController {
         ksiazka.setNazwa(bookDTO.getNazwa());
         ksiazka.setWydawnictwo(bookDTO.getWydawnictwo());
         ksiazka.setCena(bookDTO.getCena());
+
+        // Przypisanie autorów do książki
+        Set<Autor> autorzy = new HashSet<>();
+        if (bookDTO.getAutorzy() != null) {
+            for (Integer autorId : bookDTO.getAutorzy()) {
+                Autor autor = authorService.getAuthor(autorId);
+                if (autor != null) {
+                    autorzy.add(autor);
+                }
+            }
+        }
+        ksiazka.setAutorzy(autorzy);
+
         bookService.saveBook(ksiazka);
         return "redirect:/books/list";
     }
+
 
 
     @GetMapping("/formadd2")
@@ -73,14 +97,6 @@ public class BookController {
         return "addbookform2";
     }
 
-    /*@GetMapping("updateBookForm")
-    public String updateBookForm(@RequestParam("bookId")int bookid, Model model){
-        BookDTO bookDTO = new BookDTO();
-        Ksiazka ksiazka = bookService.getBook(bookid);
-        model.addAttribute("bookDTO", bookDTO);
-        model.addAttribute("categories", categoryService.getCategories());
-        return "addbookform";
-    }*/
 
     @GetMapping("/deleteBook")
     public String deleteBook(@RequestParam("bookId") int bookId) {

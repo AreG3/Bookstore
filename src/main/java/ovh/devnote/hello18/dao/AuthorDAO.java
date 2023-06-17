@@ -10,4 +10,6 @@ public interface AuthorDAO
     public List<Autor> getAuthors();
 
     public void saveAuthor(Autor autor);
+
+    Autor getAuthor(int autorId);
 }
