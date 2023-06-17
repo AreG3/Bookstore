@@ -1,11 +1,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
+<meta charset="UTF-8">
     <title>Books</title>
     <style>
         /* Style dla formularza */
         form {
-            margin-top: 20px;
+            margin: 20px auto;
+            width: 50%;
         }
 
         table {
@@ -45,7 +47,7 @@
     </style>
 </head>
 <body>
-    <h2>ADD BOOK</h2>
+    <h2 style="text-align: center;">ADD BOOK</h2>
 
     <form:form action="saveBook" modelAttribute="bookDTO" method="POST">
         <table>
@@ -92,7 +94,7 @@
         </table>
     </form:form>
 
-    <p>
+    <p style="text-align: center;">
         <a class="link" href="${pageContext.request.contextPath}/books/list">Return</a>
     </p>
 </body>

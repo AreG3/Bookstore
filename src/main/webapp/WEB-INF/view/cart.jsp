@@ -71,21 +71,21 @@
                     <td style="padding-left: 25px">
                                                     <form action="${pageContext.request.contextPath}/cart/delete" method="post">
                                                         <input type="hidden" name="bookId" value="${book.id}"/>
-                                                        <button type="submit" class="btn btn-secondary">Usun</button>
+                                                        <button type="submit" class="btn btn-secondary">Delete</button>
                                                     </form>
                                                 </td>
                 </tr>
             </c:forEach>
         </table>
     </div>
-
+    <div style="margin-bottom: 20px;"></div>
     <div>
         <button class="button" onclick="window.location.href='formadd2'; return false;">Add Book</button>
     </div>
 
     <div>
         <p>
-            <a class="link" href="${pageContext.request.contextPath}/logout">Logout</a>
+            <a class="link" href="${pageContext.request.contextPath}/books/list">Return</a>
         </p>
     </div>
 

@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
     <title>List books</title>
@@ -56,6 +57,17 @@
             display: inline-block;
             margin-top: 5px;
         }
+
+        /* Styl dla przycisku "Add Book" */
+        .add-button {
+            margin-top: 20px;
+        }
+
+        /* Styl dla odnośników do podstron */
+        .subpage-link {
+            display: inline-block;
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
@@ -69,7 +81,7 @@
                 <th>Prize</th>
                 <th>Category</th>
                 <th>Author</th>
-                <sec:authorize access="hasRole('USER')">
+                <sec:authorize access="hasRole('ADMIN')">
                     <th>Actions</th>
                 </sec:authorize>
             </tr>
@@ -84,26 +96,34 @@
                             ${author.imie} ${author.nazwisko} <br />
                         </c:forEach>
                     </td>
-                    <sec:authorize access="hasRole('USER')">
+                    <sec:authorize access="hasRole('ADMIN')">
                         <td>
                             <a class="link" href="${pageContext.request.contextPath}/books/updateBookForm?bookId=${book.id}">edit</a>
                             <a class="link" href="${pageContext.request.contextPath}/books/deleteBook?bookId=${book.id}">delete</a>
                         </td>
                     </sec:authorize>
-                    <td>
-                        <form action="${pageContext.request.contextPath}/cart/add" method="post">
-                            <input type="hidden" name="bookId" value="${book.id}" />
-                            <button class="cart-button" type="submit">Do koszyka</button>
-                        </form>
-                    </td>
+                    <sec:authorize access="hasRole('USER')">
+                        <td>
+                            <form action="${pageContext.request.contextPath}/cart/add" method="post">
+                                <input type="hidden" name="bookId" value="${book.id}" />
+                                <button class="cart-button" type="submit">Add to Cart</button>
+                            </form>
+                        </td>
+                    </sec:authorize>
                 </tr>
             </c:forEach>
         </table>
     </div>
 
-    <div>
-        <button class="button" onclick="window.location.href='formadd2'; return false;">Add Book</button>
-    </div>
+    <sec:authorize access="hasRole('ADMIN')">
+        <div class="add-button">
+            <button class="button" onclick="window.location.href='formadd2'; return false;">Add Book</button>
+        </div>
+        <div>
+            <a class="subpage-link" href="${pageContext.request.contextPath}/authors/list">Authors List</a>
+            <a class="subpage-link" href="${pageContext.request.contextPath}/authors/categories/list">Categories List</a>
+        </div>
+    </sec:authorize>
 
     <div>
         <p>
