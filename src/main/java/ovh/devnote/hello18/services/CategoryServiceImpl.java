@@ -31,9 +31,10 @@ public class CategoryServiceImpl implements CategoryService
         return categoryDAO.getCategory(id);
     }
 
+
     @Override
     @Transactional
     public void saveCategory(Kategoria category) {
-
+        categoryDAO.saveCategory(category);
     }
 }

@@ -63,6 +63,11 @@
                     <td><c:out value="${book.wydawnictwo}" /></td>
                     <td><c:out value="${book.cena}" /></td>
                     <td><c:out value="${book.kategoria.nazwa}" /></td>
+                    <td class="author-cell">
+                                            <c:forEach var="author" items="${book.autorzy}">
+                                                ${author.imie} ${author.nazwisko} <br />
+                                            </c:forEach>
+                    </td>
                     <td style="padding-left: 25px">
                                                     <form action="${pageContext.request.contextPath}/cart/delete" method="post">
                                                         <input type="hidden" name="bookId" value="${book.id}"/>

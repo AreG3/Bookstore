@@ -37,6 +37,7 @@ public class BookServiceImpl implements BookService {
                 existingBook.setWydawnictwo(ksiazka.getWydawnictwo());
                 existingBook.setCena(ksiazka.getCena());
                 existingBook.setKategoria(ksiazka.getKategoria());
+                existingBook.setAutorzy(ksiazka.getAutorzy());
                 bookDAO.updateBook(existingBook);
             }
         } else {

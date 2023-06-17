@@ -16,6 +16,7 @@ import ovh.devnote.hello18.services.AuthorService;
 
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -74,14 +75,16 @@ public class BookController {
         // Przypisanie autorów do książki
         Set<Autor> autorzy = new HashSet<>();
         if (bookDTO.getAutorzy() != null) {
+            //Set<Autor> autorzy = new HashSet<>();
             for (Integer autorId : bookDTO.getAutorzy()) {
                 Autor autor = authorService.getAuthor(autorId);
                 if (autor != null) {
                     autorzy.add(autor);
                 }
             }
+            ksiazka.setAutorzy(autorzy);
         }
-        ksiazka.setAutorzy(autorzy);
+        //ksiazka.setAutorzy(autorzy);
 
         bookService.saveBook(ksiazka);
         return "redirect:/books/list";
@@ -112,19 +115,27 @@ public class BookController {
     public String updateBookForm(@RequestParam("bookId") int bookId, Model model) {
         Ksiazka ksiazka = bookService.getBook(bookId);
         List<Kategoria> categories = categoryService.getCategories();
+        List<Autor> authors = authorService.getAuthors();
         BookDTO bookDTO = new BookDTO();
         bookDTO.setId(ksiazka.getId());
         bookDTO.setNazwa(ksiazka.getNazwa());
         bookDTO.setWydawnictwo(ksiazka.getWydawnictwo());
         bookDTO.setCena(ksiazka.getCena());
         bookDTO.setKategoriaid(ksiazka.getKategoria().getId());
+        List<Integer> selectedAuthors = new ArrayList<>();
+        for (Autor autor : ksiazka.getAutorzy()) {
+            selectedAuthors.add(autor.getId());
+        }
+        bookDTO.setAutorzy(selectedAuthors);
 
         model.addAttribute("bookDTO", bookDTO);
         model.addAttribute("categories", categories);
         model.addAttribute("currentCategoryId", ksiazka.getKategoria().getId());
+        model.addAttribute("authors", authors);
 
         return "addbookform";
     }
+
 
 
 }

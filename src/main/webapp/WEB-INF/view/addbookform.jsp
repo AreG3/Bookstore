@@ -76,13 +76,13 @@
                 </tr>
 
                 <tr>
-                        <td class="label"><label for="authors">Autorzy:</label></td>
-                        <td>
-                            <form:select path="autorzy" id="authors" multiple="true">
-                                <form:options items="${authors}" itemValue="id" itemLabel="name" />
-                            </form:select>
-                        </td>
-                    </tr>
+                    <td class="label"><label for="authors">Autorzy:</label></td>
+                    <td>
+                        <form:select path="autorzy" id="authors" multiple="true">
+                            <form:options items="${authors}" itemValue="id" itemLabel="fullName" />
+                        </form:select>
+                    </td>
+                </tr>
 
                 <tr>
                     <td></td>
