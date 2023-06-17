@@ -38,13 +38,6 @@ public class CartController {
         return "redirect:/cart";
     }
 
-    /*
-    @RequestMapping(value = "/delete/{bookId}", method = RequestMethod.POST)
-    public String removeFromCart(@PathVariable int bookId) {
-        cart.deleteBookId(bookId);
-        return "redirect:/cart";
-    }
-    */
 
     @PostMapping("/delete")
     public String removeFromCart(@RequestParam("bookId") int id) {

@@ -89,4 +89,12 @@ public class Autor {
                 ", nazwisko='" + nazwisko + '\'' +
                 '}';
     }
+
+    public String getFullName() {
+        return imie + " " + nazwisko;
+    }
+
+    public int getId() {
+        return id;
+    }
 }

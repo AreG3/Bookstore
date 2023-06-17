@@ -88,14 +88,18 @@ public class BookController {
     }
 
 
-
     @GetMapping("/formadd2")
     public String addForm2(Model model) {
         BookDTO bookDTO = new BookDTO();
+        List<Autor> authors = authorService.getAuthors(); // Pobierz listę autorów
+
         model.addAttribute("bookDTO", bookDTO);
         model.addAttribute("categories", categoryService.getCategories());
+        model.addAttribute("authors", authors); // Dodaj listę autorów do modelu
+
         return "addbookform2";
     }
+
 
 
     @GetMapping("/deleteBook")
