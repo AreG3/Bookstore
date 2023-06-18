@@ -79,9 +79,6 @@
         </table>
     </div>
     <div style="margin-bottom: 20px;"></div>
-    <div>
-        <button class="button" onclick="window.location.href='formadd2'; return false;">Add Book</button>
-    </div>
 
     <div>
         <p>

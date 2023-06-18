@@ -44,13 +44,11 @@ public class Ksiazka {
     public void addAutor(Autor autor){
         if (autorzy == null)
             autorzy = new HashSet<>();
-        //autor.addKsiazka(this);
         autorzy.add(autor);
     }
     public void removeAutor(Autor autor){
         if (autorzy == null)
              return;
-        //autor.addKsiazka(this);
         autorzy.remove(autor);
 
 

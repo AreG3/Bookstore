@@ -4,18 +4,18 @@
     <title>Authors</title>
 </head>
 <body>
-ADD BOOK
+ADD AUTHOR
 <form:form action="saveAuthor" modelAttribute="autor" method="POST">
 
     <table>
         <tbody>
         <tr>
-            <td><label>Imie:</label></td>
+            <td><label>Name:</label></td>
             <td><form:input path="imie" /></td>
         </tr>
 
         <tr>
-            <td><label>Nazwisko:</label></td>
+            <td><label>Surname:</label></td>
             <td><form:input path="nazwisko" /></td>
         </tr>
 

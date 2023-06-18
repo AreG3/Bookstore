@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ovh.devnote.hello18.entity.Autor;
-import ovh.devnote.hello18.entity.Ksiazka;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

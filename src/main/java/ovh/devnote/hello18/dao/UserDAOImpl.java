@@ -5,7 +5,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ovh.devnote.hello18.entity.Kategoria;
 import ovh.devnote.hello18.entity.User;
 
 import java.util.List;

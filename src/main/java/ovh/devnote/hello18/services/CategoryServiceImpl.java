@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ovh.devnote.hello18.dao.CategoryDAO;
 import ovh.devnote.hello18.entity.Kategoria;
-import ovh.devnote.hello18.entity.Ksiazka;
 
 import java.util.List;
 

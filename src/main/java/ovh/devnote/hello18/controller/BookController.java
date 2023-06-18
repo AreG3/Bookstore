@@ -10,12 +10,10 @@ import ovh.devnote.hello18.entity.Kategoria;
 import ovh.devnote.hello18.entity.Ksiazka;
 import ovh.devnote.hello18.services.BookService;
 import ovh.devnote.hello18.services.CategoryService;
-import ovh.devnote.hello18.services.CategoryServiceImpl;
 import ovh.devnote.hello18.dao.BookDAO;
 import ovh.devnote.hello18.services.AuthorService;
 
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -75,7 +73,6 @@ public class BookController {
         // Przypisanie autorów do książki
         Set<Autor> autorzy = new HashSet<>();
         if (bookDTO.getAutorzy() != null) {
-            //Set<Autor> autorzy = new HashSet<>();
             for (Integer autorId : bookDTO.getAutorzy()) {
                 Autor autor = authorService.getAuthor(autorId);
                 if (autor != null) {
@@ -84,7 +81,6 @@ public class BookController {
             }
             ksiazka.setAutorzy(autorzy);
         }
-        //ksiazka.setAutorzy(autorzy);
 
         bookService.saveBook(ksiazka);
         return "redirect:/books/list";

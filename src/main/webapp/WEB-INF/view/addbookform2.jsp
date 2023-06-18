@@ -53,22 +53,22 @@
         <table>
             <tbody>
                 <tr>
-                    <td class="label"><label>Nazwa:</label></td>
+                    <td class="label"><label>Title:</label></td>
                     <td><form:input path="nazwa" class="input" /></td>
                 </tr>
 
                 <tr>
-                    <td class="label"><label>Wydawnictwo:</label></td>
+                    <td class="label"><label>Publisher:</label></td>
                     <td><form:input path="wydawnictwo" class="input" /></td>
                 </tr>
 
                 <tr>
-                    <td class="label"><label>Cena:</label></td>
+                    <td class="label"><label>Prize:</label></td>
                     <td><form:input path="cena" class="input" /></td>
                 </tr>
 
                 <tr>
-                    <td class="label"><label for="categories">Kategoria:</label></td>
+                    <td class="label"><label for="categories">Category:</label></td>
                     <td>
                         <form:select path="kategoriaid" id="categories">
                             <form:options items="${categories}" itemValue="id" itemLabel="nazwa" />
@@ -77,7 +77,7 @@
                 </tr>
 
                 <tr>
-                    <td class="label"><label for="authors">Autorzy:</label></td>
+                    <td class="label"><label for="authors">Author:</label></td>
                     <td>
                         <form:select path="autorzy" id="authors" multiple="true">
                             <form:options items="${authors}" itemValue="id" itemLabel="fullName" />
