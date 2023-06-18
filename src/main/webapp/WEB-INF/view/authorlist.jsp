@@ -21,10 +21,17 @@
             </table>
         </div>
 
+        <sec:authorize access="hasRole('ADMIN')">
+            <div>
+                <input type="button" value="Add Author"
+                       onclick="window.location.href='authorformadd';return false;" />
+            </div>
+        </sec:authorize>
 
         <div>
-            <input type="button" value="Add Author"
-                   onclick="window.location.href='authorformadd';return false;" />
+            <p>
+                <a class="link" href="${pageContext.request.contextPath}/books/list">Return</a>
+            </p>
         </div>
 
 </body>

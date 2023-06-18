@@ -22,5 +22,12 @@
     <div>
         <input type="button" value="Add Category" onclick="window.location.href='add'; return false;" />
     </div>
+
+    <div>
+        <p>
+            <a class="link" href="${pageContext.request.contextPath}/books/list">Return</a>
+        </p>
+    </div>
+
 </body>
 </html>

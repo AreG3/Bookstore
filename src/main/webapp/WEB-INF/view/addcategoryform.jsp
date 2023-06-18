@@ -12,5 +12,11 @@
 
         <input type="submit" value="Save" />
     </form>
+
+    <div>
+        <p>
+            <a class="link" href="${pageContext.request.contextPath}/authors/categories/list">Return</a>
+        </p>
+    </div>
 </body>
 </html>
