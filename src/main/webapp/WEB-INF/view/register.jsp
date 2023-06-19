@@ -62,11 +62,6 @@
     </style>
 </head>
 <body>
-<nav>
-    <div>
-        <a href="${pageContext.request.contextPath}">Home</a>
-    </div>
-</nav>
 <h3>Register</h3>
 <c:if test="${not empty validator}">
     <p class="error"><c:out value="${validator}"/></p>
@@ -90,5 +85,10 @@
         </tbody>
     </table>
 </form:form>
+        <div>
+            <p>
+                <a class="link" href="${pageContext.request.contextPath}/login">Already have an account? Click here to login!</a>
+            </p>
+        </div>
 </body>
 </html>

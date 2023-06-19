@@ -74,5 +74,10 @@
         </tbody>
     </table>
 </form:form>
+        <div>
+            <p>
+                <a class="link" href="${pageContext.request.contextPath}/register">Wanna create an account? Click here!</a>
+            </p>
+        </div>
 </body>
 </html>
